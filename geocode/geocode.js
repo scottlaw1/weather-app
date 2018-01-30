@@ -1,6 +1,6 @@
 const request = require('request');
 
-var geocodeAddress = (address) => {
+var geocodeAddress = (address, callback) => {
   var encodedAddress = encodeURIComponent(address);
 
   request({
@@ -8,16 +8,17 @@ var geocodeAddress = (address) => {
     json: true
   }, (error, response, body) => {
     if (error){
-      console.log('Unable to connect to Google servers.');
+      callback('Unable to connect to Google servers.');
     } else if (body.status === 'ZERO_RESULTS'){ //Specific to Google's geocode API
-      console.log('Unable to find that address.');
+      callback('Unable to find that address.');
     } else if (body.status === 'OVER_QUERY_LIMIT'){
-      console.log(error_message);
+      callback(error_message);
     } else if (body.status === 'OK'){
-      var result = body.results[0];
-      console.log(`Address: ${result.formatted_address}`);
-      console.log(`Latitude: ${result.geometry.location.lat}`);
-      console.log(`Longitude: ${result.geometry.location.lng}`);
+      callback(undefined,{
+        address: body.results[0].formatted_address,
+        latitude: body.results[0].geometry.location.lat,
+        longitude: body.results[0].geometry.location.lng
+      })
     }
   });
 };
