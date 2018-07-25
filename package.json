@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.13.1",
-    "request": "^2.83.0",
-    "yargs": "^10.1.1"
+    "npm": "^6.2.0",
+    "request": "^2.87.0",
+    "yargs": "^10.1.2"
   }
 }
