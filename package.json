@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.13.1",
+    "axios": "^0.27.2",
     "npm": "^6.2.0",
     "request": "^2.87.0",
     "yargs": "^10.1.2"
